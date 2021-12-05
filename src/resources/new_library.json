@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "website": "www.example.com",
     "gitUrl": "github.com/user/repository",
-    "authors": ["Your name here"],
+    "authors": [
+        "Your name here"
+    ],
     "license": "License Name",
     "namespace": "com.example.myaddon",
     "description": "add-on description",
