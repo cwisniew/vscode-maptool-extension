@@ -37,7 +37,7 @@ module.exports = {
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
-    'license-header/header': ['error', './src/resources/license-header-js.txt'],
+    'license-header/header': ['error', './resources/license-header-js.txt'],
     'prefer-arrow/prefer-arrow-functions': [
       'warn',
       {
