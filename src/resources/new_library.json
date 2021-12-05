@@ -1,0 +1,14 @@
+{
+    "name": "add-on name",
+    "version": "1.0.0",
+    "website": "www.example.com",
+    "gitUrl": "github.com/user/repository",
+    "authors": ["Your name here"],
+    "license": "License Name",
+    "namespace": "com.example.myaddon",
+    "description": "add-on description",
+    "shortDescription": "add-on short description",
+    "allowsUriAccess": true,
+    "readMeFile": "readme.md",
+    "licenseFile": "license.txt"
+}

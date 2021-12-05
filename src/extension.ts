@@ -1,7 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+import { mapToolAddOn } from "./MapToolAddOn";
 import { MapToolAddOnInfoProvider } from "./MapToolAddOnInfoProvider";
+
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -32,12 +34,31 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  vscode.commands.registerCommand(
+    "maptool-add-on.createSkeleton",
+    () => {
+      if (rootPath) {
+        mapToolAddOn.createSkeleton(rootPath);
+        vscode.window.showInformationMessage("Created Add-On Skeleton");
+        mapToolAddOnInfoProvider.refresh();
+      } else {
+        vscode.window.showInformationMessage("No workspace folder");
+      }
+    }
+  )
+
+
   context.subscriptions.push(disposable);
 
+  const mapToolAddOnInfoProvider = new MapToolAddOnInfoProvider(rootPath);
   vscode.window.registerTreeDataProvider(
     "mapToolAddOnInfo",
-    new MapToolAddOnInfoProvider(rootPath)
+    mapToolAddOnInfoProvider
   );
+  vscode.commands.registerCommand(
+    "maptool-add-on.refreshView",
+    () => mapToolAddOnInfoProvider.refresh()
+  )
 }
 
 // this method is called when your extension is deactivated

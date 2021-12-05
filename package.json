@@ -15,7 +15,8 @@
   ],
   "activationEvents": [
     "onCommand:maptool-add-on.MapToolAddOn",
-    "workspaceContains:**/library.json"
+    "workspaceContains:**/library.json",
+    "onView:mapToolAddOnInfo"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -23,13 +24,26 @@
       {
         "command": "maptool-add-on.MapToolAddOn",
         "title": "Map Tool Add-Ons"
+      },
+      {
+        "command": "maptool-add-on.refreshView",
+        "title": "Refresh"
       }
     ],
     "views": {
       "explorer": [
         {
           "id": "mapToolAddOnInfo",
-          "name": "MapToolAddOn"
+          "name": "MapTool Add On"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "maptool-add-on.refreshView",
+          "when": "view == mapToolAddOnInfo",
+          "group": "navigation"
         }
       ]
     }
