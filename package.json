@@ -30,14 +30,37 @@
         "title": "Refresh"
       }
     ],
-    "views": {
-      "explorer": [
+    "viewsContainers": {
+      "activitybar": [
         {
-          "id": "mapToolAddOnInfo",
-          "name": "MapTool Add On"
+          "id": "maptool-add-ons",
+          "title": "MapTool Add-On",
+          "icon": "resources/icons/maptool-add-on.svg"
         }
       ]
     },
+    "views": {
+      "maptool-add-ons": [
+        {
+          "id": "mapToolAddOnInfo",
+          "name": "Add-On Info"
+        },
+        {
+          "id": "mapToolAddOnActions",
+          "name": "Add-On Actions"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "mapToolAddOnActions",
+        "contents": "[Create Bundled Add-On](command:maptool-add-on.createBundle)\n[Create Add-On](command:maptool-add-on.createAddOn)"
+      },
+      {
+        "view": "mapToolAddOnInfo",
+        "contents": "[Create Add-On Structure](command:maptool-add-on.createSkeleton)"
+      }
+    ],
     "menus": {
       "view/title": [
         {

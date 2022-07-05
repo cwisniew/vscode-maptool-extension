@@ -26,7 +26,6 @@ import {
   PUBLIC_DIR,
   SRC_DIR,
 } from './constants';
-import { workspace } from 'vscode';
 
 /**
  * Provider class for the MapTool Add-On information in the tree view.
@@ -295,6 +294,20 @@ export class MapToolAddOnInfoProvider
             info.push(entry);
           }
         }
+      } else {
+        info.push(
+          new MTAddOnInfo(
+            'Create MTS Properties',
+            'Create',
+            'MTS Properties file',
+            vscode.TreeItemCollapsibleState.None,
+            {
+              command: 'maptool-add-on.createMTSProperties',
+              title: 'Create MTS Properties',
+              arguments: [this.workspaceRoot],
+            },
+          ),
+        );
       }
     }
     return info;
@@ -309,7 +322,7 @@ export class MapToolAddOnInfoProvider
     if (this.sourceDir) {
       const eventsFile = path.join(this.sourceDir, EVENTS_DEFINITION_FILE);
       if (this.pathExists(eventsFile)) {
-        const events = JSON.parse(fs.readFileSync(eventsFile, 'utf8'));
+        //const events = JSON.parse(fs.readFileSync(eventsFile, 'utf8'));
         info.push(
           new MTAddOnInfo(
             'Open events.json',
@@ -337,6 +350,20 @@ export class MapToolAddOnInfoProvider
             'Legacy Events',
             '',
             vscode.TreeItemCollapsibleState.Collapsed,
+          ),
+        );
+      } else {
+        info.push(
+          new MTAddOnInfo(
+            'Create Events',
+            'Create',
+            'Events file',
+            vscode.TreeItemCollapsibleState.None,
+            {
+              command: 'maptool-add-on.createEvents',
+              title: 'Create Events file',
+              arguments: [this.workspaceRoot],
+            },
           ),
         );
       }

@@ -16,14 +16,20 @@
 import path = require('path');
 import {
   ADDON_CONTENT_DIR,
+  EVENTS_DEFINITION_FILE,
   LIBRARY_DEFINITON_FILE,
+  MACRO_SCRIPT_PROPERTIES_FILE,
   MTSCRIPT_DIR,
   PUBLIC_DIR,
   SRC_DIR,
 } from './constants';
 import * as fs from 'fs';
+import { Utils } from './utils/Utils';
+import { ExtensionContext } from 'vscode';
 
-class MapToolAddOn {
+export class MapToolAddOn {
+  constructor(private readonly extensionContext: ExtensionContext) {}
+
   createSkeleton(workspaceRoot: string): void {
     const sourceDir = path.join(workspaceRoot, SRC_DIR);
     const libraryDir = path.join(sourceDir, ADDON_CONTENT_DIR);
@@ -44,24 +50,32 @@ class MapToolAddOn {
     fs.mkdirSync(buildDir);
   }
 
-  private createLibraryFile(sourceDir: string): void {
+  private async createLibraryFile(sourceDir: string): Promise<void> {
     const filePath = path.join(sourceDir, LIBRARY_DEFINITON_FILE);
-    const content = {
-      name: 'add-on name',
-      version: '1.0.0',
-      website: 'www.example.com',
-      gitUrl: 'github.com/user/repository',
-      authors: ['Your name here'],
-      license: 'License Name',
-      namespace: 'com.example.myaddon',
-      description: 'add-on description',
-      shortDescription: 'add-on short description',
-      allowsUriAccess: true,
-      readMeFile: 'readme.md',
-      licenseFile: 'license.txt',
-    };
-    fs.writeFileSync(filePath, JSON.stringify(content, null, 2));
+    await Utils.copyResource(
+      'new_library.json',
+      filePath,
+      this.extensionContext,
+    );
+  }
+
+  async createMTSProperties(workspaceRoot: string): Promise<void> {
+    const sourceDir = path.join(workspaceRoot, SRC_DIR);
+    const filePath = path.join(sourceDir, MACRO_SCRIPT_PROPERTIES_FILE);
+    await Utils.copyResource(
+      'new_mts_properties.json',
+      filePath,
+      this.extensionContext,
+    );
+  }
+
+  async createEvents(workspaceRoot: string): Promise<void> {
+    const sourceDir = path.join(workspaceRoot, SRC_DIR);
+    const filePath = path.join(sourceDir, EVENTS_DEFINITION_FILE);
+    await Utils.copyResource(
+      'new_events.json',
+      filePath,
+      this.extensionContext,
+    );
   }
 }
-
-export const mapToolAddOn = new MapToolAddOn();
