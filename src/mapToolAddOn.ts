@@ -17,6 +17,7 @@ import path = require('path');
 import {
   ADDON_CONTENT_DIR,
   EVENTS_DEFINITION_FILE,
+  GIT_IGNORE_FILE,
   LIBRARY_DEFINITON_FILE,
   MACRO_SCRIPT_PROPERTIES_FILE,
   MTSCRIPT_DIR,
@@ -41,6 +42,7 @@ export class MapToolAddOn {
 
     fs.mkdirSync(sourceDir);
     this.createLibraryFile(sourceDir);
+    this.createGitIgnore(sourceDir);
 
     fs.mkdirSync(libraryDir);
     fs.mkdirSync(publicDir);
@@ -57,6 +59,11 @@ export class MapToolAddOn {
       filePath,
       this.extensionContext,
     );
+  }
+
+  private async createGitIgnore(sourceDir: string): Promise<void> {
+    const filePath = path.join(sourceDir, GIT_IGNORE_FILE);
+    await Utils.copyResource('new_gitignore', filePath, this.extensionContext);
   }
 
   async createMTSProperties(workspaceRoot: string): Promise<void> {

@@ -1,0 +1,5 @@
+# Don't add the build directory to the repository.
+build/
+
+# Don't add the genrated code directory to the repository.
+generated/

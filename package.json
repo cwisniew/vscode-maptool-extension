@@ -28,6 +28,26 @@
       {
         "command": "maptool-add-on.refreshView",
         "title": "Refresh"
+      },
+      {
+        "command": "maptool-add-on.createSkeleton",
+        "title": "Create MapTool Add-On Structure"
+      },
+      {
+        "command": "maptool-add-on.createMTSProperties",
+        "title": "Create MapTool Add-On Properties File"
+      },
+      {
+        "command": "maptool-add-on.createEvents",
+        "title": "Create MapTool Add-On Events File"
+      },
+      {
+        "command": "maptool-add-on.zipAddOn",
+        "title": "Create MapTool Add-On Library File"
+      },
+      {
+        "command": "maptool-add-on.bundledZipAddOn",
+        "title": "Bundle and Create MapTool Add-On Library File"
       }
     ],
     "viewsContainers": {
@@ -44,18 +64,10 @@
         {
           "id": "mapToolAddOnInfo",
           "name": "Add-On Info"
-        },
-        {
-          "id": "mapToolAddOnActions",
-          "name": "Add-On Actions"
         }
       ]
     },
     "viewsWelcome": [
-      {
-        "view": "mapToolAddOnActions",
-        "contents": "[Create Bundled Add-On](command:maptool-add-on.createBundle)\n[Create Add-On](command:maptool-add-on.createAddOn)"
-      },
       {
         "view": "mapToolAddOnInfo",
         "contents": "[Create Add-On Structure](command:maptool-add-on.createSkeleton)"

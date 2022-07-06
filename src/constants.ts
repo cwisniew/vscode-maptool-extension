@@ -57,3 +57,8 @@ export const MTSCRIPT_DIR = 'mtscript';
  * Directory name for public contents.
  */
 export const PUBLIC_DIR = 'public';
+
+/**
+ * Filename of the git ignore file.
+ */
+export const GIT_IGNORE_FILE = '.gitignore';
